@@ -3,7 +3,7 @@ echo -e "\n\n\n\n\nMinimal adb/fastboot installer 1.0 .\n"
 
 #This checks the adb version of the provided bins and the installed adb.
 VERSION="$(bins/./adb version | cut -d ' '  -f5)"
-{ VERSIONINSTALLED="$(adbs version | cut -d ' '  -f5)"; } &> /dev/null
+{ VERSIONINSTALLED="$(adb version | cut -d ' '  -f5)"; } &> /dev/null
 
 #This is checking if the installed adb version is up to date.
 #If it is, it will quit the script.
