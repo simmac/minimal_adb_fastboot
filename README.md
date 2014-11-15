@@ -1,6 +1,8 @@
 minimal_adb_fastboot
 ====================
 
+Last updated: 15.10.2014 | adb version: 1.0.32
+------------------------
 Installs the adb and fastboot binaries for OS X.
 
 Do the following steps:
