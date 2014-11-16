@@ -1,8 +1,11 @@
 #!/bin/bash
-echo -e "\n\n\n\n\nMinimal adb/fastboot installer 1.0 .\n"
+echo -e "\n\n\n\n\nMinimal adb/fastboot installer 1.1 .\n"
+
+#Gets location of the script
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 #This checks the adb version of the provided bins and the installed adb.
-VERSION="$(bins/./adb version | cut -d ' '  -f5)"
+VERSION="$($DIR/bins/./adb version | cut -d ' '  -f5)"
 { VERSIONINSTALLED="$(adbs version | cut -d ' '  -f5)"; } &> /dev/null
 
 #This is checking if the installed adb version is up to date.
@@ -16,8 +19,8 @@ echo -e "adb will now be installed. Please enter your password if asked for it o
 read -p "Press [ENTER] to install adb and fastboot."
 
 #INSTALLATION ROUTINE
-sudo cp bins/adb /usr/bin/adb
-sudo cp bins/fastboot /usr/bin/fastboot
+sudo cp $DIR/bins/adb /usr/bin/adb
+sudo cp $DIR/bins/fastboot /usr/bin/fastboot
 
 
 #check if installation was successful.
