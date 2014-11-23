@@ -1,5 +1,6 @@
 #!/bin/bash
-echo -e "\n\n\n\n\nMinimal adb/fastboot installer 1.1 .\n"
+clear
+echo -e "\n\nInstaller Package now avaiable! See readme.md for more details.\n\nQuick adb/fastboot installer 1.1.1 .\n"
 
 #Gets location of the script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
