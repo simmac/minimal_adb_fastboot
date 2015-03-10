@@ -1,22 +1,29 @@
 #!/bin/bash
 clear
-echo -e "\n\nInstaller Package now avaiable! See readme.md for more details.\n\nQuick adb/fastboot installer 1.1.1 .\n"
+echo -e "\n\nQuick adb/fastboot installer 1.2 .\n"
 
 #Gets location of the script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 #This checks the adb version of the provided bins and the installed adb.
 VERSION="$($DIR/bins/./adb version | cut -d ' '  -f5)"
-{ VERSIONINSTALLED="$(adbs version | cut -d ' '  -f5)"; } &> /dev/null
+{ VERSIONINSTALLED="$(adb version | cut -d ' '  -f5)"; } &> /dev/null
 
 #This is checking if the installed adb version is up to date.
 #If it is, it will quit the script.
 if [ "$VERSION" == "$VERSIONINSTALLED" ]; then
-		echo -e "adb is already up to date, no need to update it. \n Quitting..."
-		exit 0
+		echo -e "It seems, ADB is up to date. However, there could be silent changes which "
+		echo -e "didn't increment the version number counter. Do you want to update ADB nevertheless?\n"
+		read -p "Please enter y(es) or n(o): " yn
+		case $yn in
+			[Yy]* ) ;;
+			[Nn]* ) echo -e "Quitting...\n\n"; exit 0;;
+		esac
 fi
-echo -e "\nadb is not installed or outdated."
-echo -e "adb will now be installed. Please enter your password if asked for it or press crtl+c to cancel.\n"
+if [ "$VERSION" != "$VERSIONINSTALLED" ]; then
+	echo -e "\nadb is not installed or outdated."
+fi
+echo -e "The installation process is now starting. Please enter your password if asked for it or press crtl+c to cancel.\n"
 read -p "Press [ENTER] to install adb and fastboot."
 
 #INSTALLATION ROUTINE

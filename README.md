@@ -1,7 +1,7 @@
 minimal_adb_fastboot
 ====================
 
-Last updated: 23.10.2014 | adb version: 1.0.32
+Last updated: 10.03.2015 | adb version: 1.0.32
 ------------------------
 Installs the adb and fastboot binaries for OS X.
 
@@ -19,9 +19,15 @@ Changelog:
 - 1.0	| 15.11.2014 Initial release
 - 1.1	| 16.11.2014 Script can now be called from everywhere
 - 1.1.1	| 23.11.2014 Name change due to name confict with other adb installer.
+- 1.2	| 10.03.2015 Updated adb and fastboot binaries to platform-tools v22, adjusted script because binaries change without version number incremention.
 
-Installer Package:
+Installer Package (legacy):
 ------------------
+**PLEASE NOTE:** The package caused more problems than it did solve, and I think everybody 
+who uses adb / fastboot can install the binaries with my script. 
+*The installer package WILL NOT be supported anymore, please use the script!*
+
+
 I also made an installer package (mpkg), which simply moves the binary files into /usr/bin/.
 This Package is not signed, which means you have to start it by right-clicking on the mpkg file and select "Open...".
 
