@@ -32,4 +32,4 @@ I also made an installer package (mpkg), which simply moves the binary files int
 This Package is not signed, which means you have to start it by right-clicking on the mpkg file and select "Open...".
 
 You can find the newest version (Quick Installer Package 1.0, adb version 1.0.32) here:
-Download: https://drive.google.com/file/d/0B_i0YdEB_NoQVklSNldvRTVpZU0/view?usp=sharing
+Download: https://github.com/simmac/minimal_adb_fastboot/releases/download/1.1.1/Quick_ADB-Fastboot_Installer.mpkg
