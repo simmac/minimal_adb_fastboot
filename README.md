@@ -1,4 +1,4 @@
-minimal_adb_fastboot
+Quick ADB / Fastboot installer for OS X (minimal_adb_fastboot)
 ====================
 
 Last updated: 13.03.2015 | adb version: 1.0.32
