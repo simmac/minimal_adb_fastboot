@@ -12,13 +12,22 @@ VERSION="$($DIR/bins/./adb version | cut -d ' '  -f5)"
 #This is checking if the installed adb version is up to date.
 #If it is, it will quit the script.
 if [ "$VERSION" == "$VERSIONINSTALLED" ]; then
-		echo -e "It seems, ADB is up to date. However, there could be silent changes which "
-		echo -e "didn't increment the version number counter. Do you want to update ADB nevertheless?\n"
-		read -p "Please enter y(es) or n(o): " yn
-		case $yn in
-			[Yy]* ) ;;
-			[Nn]* ) echo -e "Quitting...\n\n"; exit 0;;
-		esac
+		
+		#check md5 match
+		MD5="$(md5 $DIR/bins/adb | cut -d " " -f4 )"
+		MD5INSTALLED="$(md5 $(which adb) | cut -d " " -f4)"
+		if [ "$MD5" != "$MD5INSTALLED" ]; then
+			echo -e "$MD5 $MD5INSTALLED Although the version number of the adb binary didn't change, the file itself changed. "
+			echo -e "Probably there was a minor patch in the binary. Do you want to update the adb binary?\n"
+			read -p "Please enter y(es) or n(o): " yn
+			case $yn in
+				[Yy]* ) ;;
+				[Nn]* ) echo -e "Quitting...\n\n"; exit 0;;
+			esac
+		else
+			echo -e "Your adb binaries seem to be up to date. Please check github.com/simmac/minimal_adb_fastboot for updates!"
+			exit 0;
+		fi
 fi
 if [ "$VERSION" != "$VERSIONINSTALLED" ]; then
 	echo -e "\nadb is not installed or outdated."

@@ -1,7 +1,7 @@
 minimal_adb_fastboot
 ====================
 
-Last updated: 10.03.2015 | adb version: 1.0.32
+Last updated: 13.03.2015 | adb version: 1.0.32
 ------------------------
 Installs the adb and fastboot binaries for OS X.
 
@@ -20,6 +20,7 @@ Changelog:
 - 1.1	| 16.11.2014 Script can now be called from everywhere
 - 1.1.1	| 23.11.2014 Name change due to name confict with other adb installer.
 - 1.2	| 10.03.2015 Updated adb and fastboot binaries to platform-tools v22, adjusted script because binaries change without version number incremention.
+- 1.2.1 | 13.03.2015 Improved version check by adding a hash-check to compare installed and delivered bin. 
 
 Installer Package (legacy):
 ------------------
