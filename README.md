@@ -3,16 +3,13 @@ minimal_adb_fastboot
 
 Last updated: 13.03.2015 | adb version: 1.0.32
 ------------------------
-Installs the adb and fastboot binaries for OS X.
+Installs the adb and fastboot binaries for OS X and Linux.
 
 Do the following steps:
 - Download the zip
 - unzip it
-- cd to the directory (probably Downloads/minimal_adb_fastboot ) *
 - Start the shell script with ./install.sh
 - Finished
-* Since version 1.1, you can simply call the script with the location, eg /Downloads/minimal_adb_fastboot-master/./install.sh.
-
 
 Changelog:
 ---------------
@@ -21,7 +18,12 @@ Changelog:
 - 1.1.1	| 23.11.2014 Name change due to name confict with other adb installer.
 - 1.2	| 10.03.2015 Updated adb and fastboot binaries to platform-tools v22, adjusted script because binaries change without version number incremention.
 - 1.2.1 | 13.03.2015 Improved version check by adding a hash-check to compare installed and delivered bin. 
+- **2.0.0 | 14.03.2015 Added Linux support!** (experimental, feedback very welcome!)
 
+Support Thread:
+----------------
+Official support thread on xda: http://forum.xda-developers.com/android/general/adb-fastboot-binaries-os-x-inclusive-t2941205
+Please open an issue if you experience any problems and feel free to fork and improve this script, I would be happy if you made a push request with your improvements!
 Installer Package (legacy):
 ------------------
 **PLEASE NOTE:** The package caused more problems than it did solve, and I think everybody 
