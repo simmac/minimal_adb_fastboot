@@ -1,7 +1,7 @@
-Quick ADB / Fastboot installer for OS X (minimal_adb_fastboot)
+Quick ADB / Fastboot installer for OS X and Linux (minimal_adb_fastboot)
 ====================
 
-Last updated: 13.03.2015 | adb version: 1.0.32
+Last updated: 14.03.2015 | adb version: 1.0.32
 ------------------------
 Installs the adb and fastboot binaries for OS X and Linux.
 
@@ -24,6 +24,7 @@ Support Thread:
 ----------------
 Official support thread on xda: http://forum.xda-developers.com/android/general/adb-fastboot-binaries-os-x-inclusive-t2941205
 Please open an issue if you experience any problems and feel free to fork and improve this script, I would be happy if you made a push request with your improvements!
+
 Installer Package (legacy):
 ------------------
 **PLEASE NOTE:** The package caused more problems than it did solve, and I think everybody 
