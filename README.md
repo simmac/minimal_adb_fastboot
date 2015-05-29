@@ -1,7 +1,7 @@
 Quick ADB / Fastboot installer for OS X and Linux (minimal_adb_fastboot)
 ====================
 
-Quick info: If you are handling with Android M previews, please check out the [preview](/github/simmac/minimal_adb_fastboot/tree/preview) branch!
+Quick info: If you are handling with Android M previews, please check out the [preview](https://github.com/simmac/minimal_adb_fastboot/tree/preview) branch!
 
 Last updated: 14.03.2015 | adb version: 1.0.32
 ------------------------
