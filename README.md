@@ -1,6 +1,8 @@
 Quick ADB / Fastboot installer for OS X and Linux (minimal_adb_fastboot)
 ====================
 
+Quick info: If you are handling with Android M previews, please check out the [preview](/simmac/minimal_adb_fastboot/tree/preview) branch!
+
 Last updated: 14.03.2015 | adb version: 1.0.32
 ------------------------
 Installs the adb and fastboot binaries for OS X and Linux.
@@ -25,15 +27,3 @@ Support Thread:
 Official support thread on xda: http://forum.xda-developers.com/android/general/adb-fastboot-binaries-os-x-inclusive-t2941205
 Please open an issue if you experience any problems and feel free to fork and improve this script, I would be happy if you made a push request with your improvements!
 
-Installer Package (legacy):
-------------------
-**PLEASE NOTE:** The package caused more problems than it did solve, and I think everybody 
-who uses adb / fastboot can install the binaries with my script. 
-*The installer package WILL NOT be supported anymore, please use the script!*
-
-
-I also made an installer package (mpkg), which simply moves the binary files into /usr/bin/.
-This Package is not signed, which means you have to start it by right-clicking on the mpkg file and select "Open...".
-
-You can find the newest version (Quick Installer Package 1.0, adb version 1.0.32) here:
-Download: https://github.com/simmac/minimal_adb_fastboot/releases/download/1.1.1/Quick_ADB-Fastboot_Installer.mpkg
