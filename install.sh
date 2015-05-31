@@ -1,64 +1,186 @@
 #!/bin/bash
 clear
-echo -e "\n\nQuick adb/fastboot installer 2.0 with PREVIEW BINARIES\n"
+echo -e "\n\nQuick adb/fastboot installer 3.0.0 with PREVIEW BINARIES\n"
+
 
 #Gets location of the script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-#Check if linux or OS X and setting parameters
-if [ "$(uname -s)" == "Darwin" ]; then #OS X
-	INSTALLPATH="/usr/bin"
-	BINPATH="$DIR/osx"
-	MD5="md5 -q"
-else	#we assume it's (debian) linux
-	INSTALLPATH="/usr/local/bin"
-	BINPATH="$DIR/linux"
-	MD5="md5sum"
-fi
+#		FUNCTIONS SECTION BEGIN			#
+#---------------------------------------#
 
-#This checks the adb version of the provided bins and the installed adb.
-VERSION="$($BINPATH/./adb version | cut -d ' '  -f5)"
-{ VERSIONINSTALLED="$(adb version | cut -d ' '  -f5)"; } &> /dev/null
+function oscheck () {
+	# Checks if linux or OS X and sets parameters
+	# function is called "oscheck"
+	if [ "$(uname -s)" == "Darwin" ]; then #OS X
+		INSTALLPATH="/usr/local/bin"
+		INSTALLPATH_OLD="/usr/bin"
+		BINPATH="$DIR/osx"
+		MD5="md5 -q"
+	else	#we assume it's (debian) linux
+		INSTALLPATH="/usr/local/bin"
+		BINPATH="$DIR/linux"
+		MD5="md5sum"
+	fi
+}
 
-#This is checking if the installed adb version is up to date.
-if [ "$VERSION" == "$VERSIONINSTALLED" ]; then
-		
+
+function versioncheck () {
+	# CHECKS IF BINARY VERSIONS MATCH
+	# 0 = match, 1 = no match, 2 = no installation 
+	# function is called "versioncheck $1"
+	# while $1 is either adb or fastboot
+	
+	if [ -f $INSTALLPATH/$1 ]; then
+	
 		echo -e "Comparing checksums...\n"
 		#check md5 match
-		MD5BIN="$($MD5 $BINPATH/adb)"
-		MD5INSTALLED="$($MD5 $(which adb))"
-		if [ "$MD5BIN" != "$MD5INSTALLED" ]; then
-			echo -e "Although the version number of the adb binary didn't change, the file itself changed. "
-			echo -e "Probably there was a minor patch in the binary. Do you want to update the adb binary?\n"
-			read -p "Please enter y(es) or n(o): " yn
-			case $yn in
-				[Yy]* ) ;;
-				[Nn]* ) echo -e "Quitting...\n\n"; exit 0;;
-			esac
+		MD5BIN="$($MD5 $BINPATH/$1)"
+		MD5INSTALLED="$($MD5 $INSTALLPATH/$1)"
+		if [ "$MD5BIN" == "$MD5INSTALLED" ]; then
+			return 0;
 		else
-			echo -e "\nChecksums of installed and provided binary match.\n"
-			echo -e "Your adb binaries seem to be up to date. Please check https://github.com/simmac/minimal_adb_fastboot for updates or do a git pull!"
-			exit 0;
+			return 1;
 		fi
-fi
-if [ "$VERSION" != "$VERSIONINSTALLED" ]; then
-	echo -e "\nadb is not installed or outdated."
-fi
-echo -e "The installation process is now starting. Please enter your password if asked for it or press crtl+c to cancel.\n"
-read -p "Press [ENTER] to install adb and fastboot."
+	
+	else
+		return 2;
+	fi	
+}
 
-#INSTALLATION ROUTINE
-sudo cp $BINPATH/adb $INSTALLPATH/adb
-sudo cp $BINPATH/fastboot $INSTALLPATH/fastboot
+function install () {
+	# INSTALLATION ROUTINE
+	# function is called "install $1"
+	# while $1 is either adb or fastboot
+	
+	sudo cp $BINPATH/$1 $INSTALLPATH/$1
+	
+	versioncheck $1
+	if [ "$?" == "0" ]; then
+		return 0;
+	else
+		return 1;
+	fi
+}
+
+function fullinstall () {
+	# This does the full installation process
+	# including the versionchecks
+	
+	# function is called "install $1"
+	# while $1 is either adb or fastboot
+	versioncheck $1
+		if [ "$?" == "0" ]; then
+			echo -e "$1 binaries are up to date. No need for installation.\n"
+			return 0;
+		else
+			install $1;
+			
+			if [ "$?" == "0" ]; then
+				echo -e "Installation of $1 completed successfully!\n"
+			return 0;
+			
+			else
+				echo -e "Sorry, something went wrong :(\n"
+				echo -e "$1 is not installed.\n"
+				return 1;
+			fi
+		fi
+}
+
+function uninstall () {
+	# UNINSTALLATION ROUTINE
+	# function is called "uninstall $1"
+	# while $1 CAN be "old", standard is empty
+	
+	if [ "$1" == "old" ]; then
+		INSTALLPATH="$INSTALLPATH_OLD"
+	fi
+	
+	sudo rm -f $INSTALLPATH/adb
+	sudo rm -f $INSTALLPATH/fastboot
+	
+	if [ -f "$INSTALLPATH/adb" ] || [ -f "$INSTALLPATH/fastboot" ]; then
+		return 1;
+	else
+		return 0;
+	fi
+}
 
 
+#		FUNCTIONS SECTION END			#
+#---------------------------------------#
 
-#check if installation was successful.
-{ VERSIONINSTALLED="$(adb version | cut -d ' '  -f5)"; } &> /dev/null
-if [ "$VERSION" == "$VERSIONINSTALLED" ]; then
-		echo -e "\nInstallation completed successfully! adb version $VERSIONINSTALLED is now installed."
-		exit 0
-else
-	echo -e "\n\nSorry, something went wrong :( Try again."
-	exit 2
-fi
+oscheck
+
+case $1 in								#reads first argument
+	
+	"")
+		echo -e "super user rights are needed."
+		echo -e "You may be prompted for your admin password now.\n"
+		fullinstall adb
+		A="$?"							#stores return of "fullinstall adb" in $A
+		
+		fullinstall fastboot
+		
+		if [ "$A" == 0 ] && [ "$?" == 0 ]; then
+			echo -e "\n\n\n\nComplete installation completed successfully!\n"
+			echo -e "Thanks for using Quick adb/fastboot!\n Quitting now...\n"
+			exit 0;
+		else
+			echo -e "\n\n\n\nSorry, installation was unsuccessful!\n"
+			"Thanks for using Quick adb/fastboot!\n Quitting now...\n"
+			exit 1;
+		fi
+		;;
+	
+	
+	uninstall)
+		echo -e "super user rights are needed."
+		echo -e "You may be prompted for your admin password now.\n"
+		uninstall
+	
+		if [ "$?" == "0" ]; then
+			echo -e "Uninstall successful!\n Quitting now..."
+			echo -e "Thanks for using Quick adb/fastboot!"
+			exit 0;
+		else
+			echo -e "Sorry, something went wrong :(\n"
+			echo -e "adb or fastboot are still installed.\n Quitting now..."
+			exit 1;
+		fi
+		;;
+	
+	adb|fastboot)
+		echo -e "super user rights are needed."
+		echo -e "You may be prompted for your admin password now.\n"
+		fullinstall $1
+		
+		echo -e "Thanks for using Quick adb/fastboot!\n Quitting now...\n"
+		exit $?;
+		
+		;;
+		
+	uninstall-old)
+		echo -e "super user rights are needed."
+		echo -e "You may be prompted for your admin password now.\n"
+		uninstall old
+	
+		if [ "$?" == "0" ]; then
+			echo -e "Uninstall successful!\n Quitting now..."
+			echo -e "Thanks for using Quick adb/fastboot!"
+			exit 0;
+		else
+			echo -e "Sorry, something went wrong :(\n"
+			echo -e "adb or fastboot are still installed in /usr/bin.\n Quitting now..."
+			exit 1;
+		fi
+		;;
+		
+	*)
+		echo -e "Invalid argument "$1"! \n Quitting now...\n"
+		exit 1;
+		
+		;;
+		
+esac
