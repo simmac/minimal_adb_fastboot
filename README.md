@@ -18,7 +18,7 @@ There are a few arguments you can use with the script:
 	- uninstall-old: For OS X users who installed adb from this script with version <3.0. If you used my script version <3.0 on your mac, you should run this command once to remove the binaries from /usr/bin (they are now installed in /usr/local/bin).
 - adb		: Installs the adb binary only
 - fastboot	: Installs the fastboot binary only
-The arguments can be used like this: ./install.sh [argument] (eg *./install.sh uninstall* )
+The arguments can be used like this: ./install.sh [argument] eg *./install.sh uninstall* 
 An empty argument does the full installation of both binaries.
 
 
