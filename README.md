@@ -20,7 +20,7 @@ There are a few arguments you can use with the script:
 	- uninstall-old: For OS X users who installed adb from this script with version <3.0. If you used my script version <3.0 on your mac, you should run this command once to remove the binaries from /usr/bin (they are now installed in /usr/local/bin).
 - adb		: Installs the adb binary only
 - fastboot	: Installs the fastboot binary only
-The arguments can be used like this: ./install.sh [argument] (eg *./install.sh uninstall* )
+The arguments can be used like this: ./install.sh *argument* (eg *./install.sh uninstall* )
 An empty argument does the full installation of both binaries.
 
 
@@ -33,8 +33,8 @@ Changelog:
 - 1.2.1 | 13.03.2015 Improved version check by adding a hash-check to compare installed and delivered bin. 
 - 2.0.0 | 14.03.2015 Added Linux support! (experimental, feedback very welcome!)
 - 2.0.1_preview1 	| 29.05.2015 Updated to the latest preview version (v23 rc_1)
-- **3.0.0_preview1 | 31.05.2015** Improved code quality and readability a lot by rewriting the whole script and using functions. Added the arguments *uninstall*, *adb* and *fastboot*. **Changed the installation path on OS X to /usr/local/bin !**
-
+- 3.0.0_preview1 | 31.05.2015 Improved code quality and readability a lot by rewriting the whole script and using functions. Added the arguments *uninstall*, *adb* and *fastboot*. **Changed the installation path on OS X to /usr/local/bin !**
+- **3.0.0_preview2	| 17.06.2015** Updated to the latest preview version (v23 rc_2). This fixes the "missing system.img" error when flashing images!
 
 Support Thread:
 ----------------
@@ -42,7 +42,8 @@ Official support thread on xda: http://forum.xda-developers.com/android/general/
 Please open an issue if you experience any problems and feel free to fork and improve this script, I would be happy if you made a push request with your improvements!
 
 
-
+License:
+---------------
 This repository is using software from the Android Open Source Project licensed as follows:
 'Copyright (c) 2014 Google Inc.
 
