@@ -1,7 +1,7 @@
 Quick ADB / Fastboot installer for OS X and Linux (minimal_adb_fastboot) (PREVIEW)
 ====================
 
-Last updated: 31.05.2015 | adb version: 1.0.32 platform-tools 23rc_1
+Last updated: 17.06.2015 | adb version: 1.0.32 platform-tools 23rc_2
 --------------
 
 PLEASE NOTE: This branch uses the latest preview of the platform-tools from Google (v23 rc_1)! Use this only when messing around with the Android M Preview! Go back to the master branch for the stable ADB/fastboot binaries!
