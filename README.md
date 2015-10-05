@@ -3,7 +3,7 @@ Quick ADB / Fastboot installer for OS X and Linux (minimal_adb_fastboot)
 
 Quick info: If you are handling with Android M previews, please check out the [preview](https://github.com/simmac/minimal_adb_fastboot/tree/preview) branch!
 
-Last updated: 31.05.2015 | adb version: 1.0.32
+Last updated: 5.10.2015 | adb version: 1.0.32 Revision eac51f2bb6a8-android
 ------------------------
 Installs the adb and fastboot binaries for OS X and Linux.
 
@@ -30,7 +30,8 @@ Changelog:
 - 1.2	| 10.03.2015 Updated adb and fastboot binaries to platform-tools v22, adjusted script because binaries change without version number incremention.
 - 1.2.1 | 13.03.2015 Improved version check by adding a hash-check to compare installed and delivered bin. 
 - 2.0.0 | 14.03.2015 Added Linux support! (experimental, feedback very welcome!)
-- **3.0.0 | 31.05.2015** Improved code quality and readability a lot by rewriting the whole script and using functions. Added the arguments *uninstall*, *adb* and *fastboot*. **Changed the installation path on OS X to /usr/local/bin !**
+- 3.0.0 | 31.05.2015 Improved code quality and readability a lot by rewriting the whole script and using functions. Added the arguments *uninstall*, *adb* and *fastboot*. **Changed the installation path on OS X to /usr/local/bin !**
+- **3.1.0 | 05.10.2015** Updated to newest v23 binaries. Required for Android Marshmallow on flounder.
 
 Support Thread:
 ----------------
