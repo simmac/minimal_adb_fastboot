@@ -1,9 +1,9 @@
-Quick ADB / Fastboot installer for OS X and Linux (minimal_adb_fastboot)
+Quick ADB / Fastboot / AAPT installer for OS X and Linux (minimal_adb_fastboot)
 ====================
 
 Last updated: 1.3.2016 | adb version: 1.0.32 Revision eac51f2bb6a8-android
 ------------------------
-Installs the adb and fastboot binaries for OS X and Linux.
+Installs the adb, fastboot and aapt binaries for OS X and Linux.
 
 Do the following steps:
 - Download the zip
@@ -12,10 +12,11 @@ Do the following steps:
 - Finished
 
 There are a few arguments you can use with the script:
-- uninstall : Deletes the adb and fastboot binaries from /usr/local/bin
+- uninstall : Deletes the adb, fastboot and aapt binaries from /usr/local/bin
 	- uninstall-old: For OS X users who installed adb from this script with version <3.0. If you used my script version <3.0 on your mac, you should run this command once to remove the binaries from /usr/bin (they are now installed in /usr/local/bin).
 - adb		: Installs the adb binary only
 - fastboot	: Installs the fastboot binary only
+- fastboot	: Installs the aapt binary only
 The arguments can be used like this: ./install.sh [argument] eg *./install.sh uninstall* 
 An empty argument does the full installation of both binaries.
 
@@ -31,6 +32,7 @@ Changelog:
 - 3.0.0 | 31.05.2015 Improved code quality and readability a lot by rewriting the whole script and using functions. Added the arguments *uninstall*, *adb* and *fastboot*. **Changed the installation path on OS X to /usr/local/bin !**
 - 3.1.0 | 05.10.2015 Updated to newest v23 binaries. Required for Android Marshmallow on flounder.
 - **3.2.0** | 01.03.2016 Checks if installation directory exists before running the script
+- **3.2.0-AAPT** | 01.03.2016 Added AAPT-bin
 
 Support Thread:
 ----------------

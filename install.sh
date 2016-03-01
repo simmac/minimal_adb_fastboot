@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo -e "\n\nQuick adb/fastboot installer 3.2.0\n"
+echo -e "\n\nQuick adb/fastboot installer WITH AAPT 3.2.0\n"
 
 #Gets location of the script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -36,7 +36,7 @@ function versioncheck () {
 	# CHECKS IF BINARY VERSIONS MATCH
 	# 0 = match, 1 = no match, 2 = no installation 
 	# function is called "versioncheck $1"
-	# while $1 is either adb or fastboot
+	# while $1 is either adb, fastboot or aapt
 	
 	if [ -f $INSTALLPATH/$1 ]; then
 	
@@ -58,7 +58,7 @@ function versioncheck () {
 function install () {
 	# INSTALLATION ROUTINE
 	# function is called "install $1"
-	# while $1 is either adb or fastboot
+	# while $1 is either adb, fastboot or aapt
 	
 	sudo cp $BINPATH/$1 $INSTALLPATH/$1
 	
@@ -75,7 +75,7 @@ function fullinstall () {
 	# including the versionchecks
 	
 	# function is called "install $1"
-	# while $1 is either adb or fastboot
+	# while $1 is either adb, fastboot or aapt
 	versioncheck $1
 		if [ "$?" == "0" ]; then
 			echo -e "$1 binaries are up to date. No need for installation.\n"
@@ -106,8 +106,10 @@ function uninstall () {
 	
 	sudo rm -f $INSTALLPATH/adb
 	sudo rm -f $INSTALLPATH/fastboot
+	sudo rm -f $INSTALLPATH/aapt
+
 	
-	if [ -f "$INSTALLPATH/adb" ] || [ -f "$INSTALLPATH/fastboot" ]; then
+	if [ -f "$INSTALLPATH/adb" ] || [ -f "$INSTALLPATH/fastboot" ] || [ -f "$INSTALLPATH/aapt" ]; then
 		return 1;
 	else
 		return 0;
@@ -129,8 +131,11 @@ case $1 in								#reads first argument
 		A="$?"							#stores return of "fullinstall adb" in $A
 		
 		fullinstall fastboot
+		B="$?"
 		
-		if [ "$A" == 0 ] && [ "$?" == 0 ]; then
+		fullinstall aapt
+		
+		if [ "$A" == 0 ] && [ "$B" == 0 ] && [ "$?" == 0 ]; then
 			echo -e "\n\n\n\nComplete installation completed successfully!\n"
 			echo -e "Thanks for using Quick adb/fastboot!\n Quitting now...\n"
 			exit 0;
@@ -158,7 +163,7 @@ case $1 in								#reads first argument
 		fi
 		;;
 	
-	adb|fastboot)
+	adb|fastboot|aapt)
 		echo -e "super user rights are needed."
 		echo -e "You may be prompted for your admin password now.\n"
 		fullinstall $1
@@ -179,7 +184,7 @@ case $1 in								#reads first argument
 			exit 0;
 		else
 			echo -e "Sorry, something went wrong :(\n"
-			echo -e "adb or fastboot are still installed in /usr/bin.\n Quitting now..."
+			echo -e "adb, fastboot or aapt are still installed in /usr/bin.\n Quitting now..."
 			exit 1;
 		fi
 		;;
