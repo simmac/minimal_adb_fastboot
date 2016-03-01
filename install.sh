@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo -e "\n\nQuick adb/fastboot installer 3.1.0\n"
+echo -e "\n\nQuick adb/fastboot installer 3.2.0\n"
 
 #Gets location of the script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -20,6 +20,14 @@ function oscheck () {
 		INSTALLPATH="/usr/local/bin"
 		BINPATH="$DIR/linux"
 		MD5="md5sum"
+	fi
+	
+	#check whether the installation directory exists and creates it if needed.
+	if [ ! -d "$INSTALLPATH" ]; then
+		echo -e "The target directory doesn't exist. This script will create the directory for you."
+		echo -e "You may be asked for your password now. \n"
+		sudo mkdir $INSTALLPATH
+		echo -e "\nDirectory created. The installation script will begin now.\n"
 	fi
 }
 
