@@ -106,7 +106,8 @@ function uninstall () {
 	
 	sudo rm -f $INSTALLPATH/adb
 	sudo rm -f $INSTALLPATH/fastboot
-	
+	sudo rm -f $INSTALLPATH/aapt
+
 	if [ -f "$INSTALLPATH/adb" ] || [ -f "$INSTALLPATH/fastboot" ]; then
 		return 1;
 	else

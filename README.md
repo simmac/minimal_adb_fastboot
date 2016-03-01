@@ -5,6 +5,8 @@ Last updated: 1.3.2016 | adb version: 1.0.32 Revision eac51f2bb6a8-android
 ------------------------
 Installs the adb and fastboot binaries for OS X and Linux.
 
+If you need the aapt as well, please switch to branch [`aapt`](https://github.com/simmac/minimal_adb_fastboot/tree/aapt) or download the zip [here](https://github.com/simmac/minimal_adb_fastboot/archive/aapt.zip).
+
 Do the following steps:
 - Download the zip
 - unzip it
@@ -30,7 +32,9 @@ Changelog:
 - 2.0.0 | 14.03.2015 Added Linux support! (experimental, feedback very welcome!)
 - 3.0.0 | 31.05.2015 Improved code quality and readability a lot by rewriting the whole script and using functions. Added the arguments *uninstall*, *adb* and *fastboot*. **Changed the installation path on OS X to /usr/local/bin !**
 - 3.1.0 | 05.10.2015 Updated to newest v23 binaries. Required for Android Marshmallow on flounder.
-- **3.2.0** | 01.03.2016 Checks if installation directory exists before running the script
+- 3.2.0 | 01.03.2016 Checks if installation directory exists before running the script
+- **3.2.1** | 01.03.2016 new branch with aapt-binaries, added aapt-unnstaller
+
 
 Support Thread:
 ----------------
