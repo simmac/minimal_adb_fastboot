@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo -e "\n\nQuick adb/fastboot installer 3.2.0\n"
+echo -e "\n\nQuick adb/fastboot installer 3.3.0\n"
 
 #Gets location of the script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
